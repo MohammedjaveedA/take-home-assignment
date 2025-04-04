@@ -3,7 +3,7 @@ import {
   View, Text, Image, ScrollView, Pressable, StyleSheet, TouchableOpacity, 
   Animated
 } from "react-native";
-import { Settings, Share2, Grid2x2 as Grid, Bookmark, Heart, Flag } from "lucide-react-native";
+import { Settings, Share2, Grid2x2 as Grid,Flag } from "lucide-react-native";
 import Card from "@/components/cardcomponent";
 
 const PROFILE_IMAGE = require("../assets/images/profile.png");
@@ -118,18 +118,18 @@ export default function ProfileScreen() {
       ) : (
         <View style={styles.manageSection}>
           <Text style={styles.manageTagsText}>Our recommendations work best when you let us know these things:</Text>
-          <View style={styles.tagOption}>
+          <TouchableOpacity style={styles.tagOption}>
             <Text style={styles.tagTitle}>YOUR DIFFICULTY ✨</Text>
             <Text style={styles.tagDescription}>You decide the level of challenge you want!</Text>
-          </View>
-          <View style={styles.tagOption}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.tagOption}>
             <Text style={styles.tagTitle}>INTERESTS YOU LIKE ✨</Text>
             <Text style={styles.tagDescription}>We’ll use these to show you cool builds</Text>
-          </View>
-          <View style={styles.tagOption}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.tagOption}>
             <Text style={styles.tagTitle}>TOOLS USED 🛠</Text>
             <Text style={styles.tagDescription}>We’ll suggest better using these picks.</Text>
-          </View>
+          </TouchableOpacity>
         </View>
       )}
     </ScrollView>
@@ -147,31 +147,31 @@ const styles = StyleSheet.create({
   profileInfo: { gap: 4},
   profile:{flexDirection:"row",gap:3},
   profileedit:{marginLeft:72},
-  username: { color: "#fff", fontSize: 18, fontFamily: "CircularStd-Book"  },
-  location: { color: "#fff", fontFamily: "CircularStd-Book" },
-  bio: { color: "#cccaca", marginTop: 4, fontFamily: "CircularStd-Book" },
+  username: { color: "#fff", fontSize: 18, fontFamily: "CircularBook"  },
+  location: { color: "#fff", fontFamily: "CircularBook" },
+  bio: { color: "#cccaca", marginTop: 4, fontFamily: "CircularBook" },
   statsContainer: { marginTop: 20 },
   statItem: { alignItems: "flex-start" },
-  statNumber: { color: "#fff", fontSize: 18, fontWeight: "bold", fontFamily: "CircularStd-Book" },
-  statLabel: { color: "#cccaca", fontSize: 12, marginTop: 4, fontFamily: "CircularStd-Book" },
+  statNumber: { color: "#fff", fontSize: 18, fontWeight: "bold", fontFamily: "CircularBook" },
+  statLabel: { color: "#cccaca", fontSize: 12, marginTop: 4, fontFamily: "CircularBook" },
   tabBar: { flexDirection: "row", borderBottomWidth: 1, borderBottomColor: "#333", paddingHorizontal: 20 },
   tabItem: { flexDirection: "row", alignItems: "center", paddingVertical: 16, marginRight: 32 },
-  tabTextActive: { color: "#00ff9d", fontSize: 14, fontWeight: "600", marginLeft: 8, fontFamily: "CircularStd-Book" },
-  tabTextInactive: { color: "#666", fontSize: 14, fontWeight: "600", marginLeft: 8, fontFamily: "CircularStd-Book" },
+  tabTextActive: { color: "#00ff9d", fontSize: 14, fontWeight: "600", marginLeft: 8, fontFamily: "CircularBook" },
+  tabTextInactive: { color: "#666", fontSize: 14, fontWeight: "600", marginLeft: 8, fontFamily: "CircularBook" },
   content:{padding: 15, gap: 15},
   contentSection: { gap: 15, flex:1,flexDirection:"row" },
   manageSection: { padding: 20, gap: 15, },
   contentBlock: { gap: 16 },
   sectionHeader: { flexDirection: "row", alignItems: "center", gap: 8 },
-  sectionTitle: { color: "#fff", fontSize: 14, fontWeight: "600", fontFamily: "CircularStd-Book" },
+  sectionTitle: { color: "#fff", fontSize: 14, fontWeight: "600", fontFamily: "CircularBook" },
   gridContainer: { flexDirection: "row", gap: 8 },
   gridItem: { flex: 1, aspectRatio: 1, borderRadius: 12 },
   gridItemDark: { backgroundColor: "#333" },
   gridItemLight: { backgroundColor: "#444" },
-  manageTagsText: { color: "#fff", fontSize: 14, fontFamily: "CircularStd-Book", marginBottom: 16 },
-  tagOption: { backgroundColor: "#222", padding: 12, borderRadius: 10, marginBottom: 10 },
-  tagTitle: { color: "#fff", fontSize: 14, fontWeight: "bold" },
-  tagDescription: { color: "#aaa", fontSize: 12, marginTop: 4 },
+  manageTagsText: { color: "#fff", fontSize: 14, fontFamily: "CircularBook", marginBottom: 16 },
+  tagOption: { backgroundColor: "#222", padding: 12, borderRadius: 10, marginBottom: 10, },
+  tagTitle: { color: "#fff", fontSize: 14,fontFamily:"CircularBook" },
+  tagDescription: { color: "#aaa", fontSize: 12, marginTop: 4 ,fontFamily:"CircularBook"},
   backgroundImage: { 
     position: "absolute",
     width: "200%",

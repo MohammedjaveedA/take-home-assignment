@@ -26,24 +26,28 @@ const styles = StyleSheet.create({
     width: 180, 
     height: 150, 
     resizeMode: "cover",
+    
  }, 
     textContainer: { 
     paddingVertical: 10,
     alignItems: "center",
     marginLeft:9,
     flexDirection:"row",
-    gap:4
+    gap:4,
+    
 }, 
     name: {
     fontSize: 15,
     fontWeight: "thin", 
     color: "#c4c4be",
+    fontFamily:"CircularLight"
  },
     count: {
         color: "#c4c4be",
         fontSize: 16,
         fontWeight: "bold",
         marginTop: 2,
+        fontFamily:"NTBrickSans"
       },
 });
    
