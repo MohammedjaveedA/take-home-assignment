@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { 
   View, Text, Image, ScrollView, Pressable, StyleSheet, TouchableOpacity, 
   Animated
 } from "react-native";
-import { Settings, Share2, Grid2x2 as Grid,Flag } from "lucide-react-native";
+import { Settings, Share2, Grid2x2 as Grid,Flag, Target, Package2, ChevronRight } from "lucide-react-native";
 import Card from "@/components/cardcomponent";
 
 const PROFILE_IMAGE = require("../assets/images/profile.png");
@@ -15,15 +15,16 @@ const BACKGROUND_IMAGE = require("../assets/images/background.jpg");
 
 export default function ProfileScreen() {
   const [activeTab, setActiveTab] = useState("collections");
-  const animatedValue = new Animated.Value(0);
+  const animatedValue = useRef(new Animated.Value(0)).current;
+
 
   useEffect(() => {
     Animated.loop(
       Animated.sequence([
-        Animated.timing(animatedValue, { toValue: 1, duration: 2000, useNativeDriver: false }),
-        Animated.timing(animatedValue, { toValue: 0, duration: 2000, useNativeDriver: false })
+        Animated.timing(animatedValue, { toValue: 1, duration: 1000, useNativeDriver: false }),
+        Animated.timing(animatedValue, { toValue: 0, duration: 1000, useNativeDriver: false })
       ])
-    ).start();
+    ).start()
   }, []);
 
 
@@ -51,8 +52,8 @@ export default function ProfileScreen() {
       {/* HEADER */}
       <View style={styles.header}>
         <View style={styles.headerActions}>
-          <Share2 color="#fff" size={24} />
-          <Settings color="#fff" size={24} style={styles.settingsIcon} />
+            <Share2 size={24}  color="white"/>
+            <Settings size={24}  color="white"/>
         </View>
       </View>
 
@@ -71,7 +72,8 @@ export default function ProfileScreen() {
              </View>
         
           <Text style={styles.location}>🇮🇳 INDIA</Text>
-          <Text style={styles.bio}>18 y/o with high ambitions, want to build cool stuff!</Text>
+          <Text style={styles.bio}>18 y/o with high ambitions, want to build cool 
+                    stuff!</Text>
         </View>
 
         <View style={styles.statsContainer}>
@@ -80,12 +82,12 @@ export default function ProfileScreen() {
             <Text style={styles.statLabel}>FOLLOWING</Text>
           </View>
         </View>
-      </Animated.View>
+     </Animated.View>
 
       {/* TABS */}
       <View style={styles.tabBar}>
         <Pressable style={styles.tabItem}>
-          <Grid color={activeTab === "collections" ? "#00ff9d" : "#666"} size={24} />
+        <Package2  color={activeTab === "collections" ? "#00ff9d" : "#666"} size={24}/>
           <TouchableOpacity onPress={() => setActiveTab("collections")}>
             <Text style={activeTab === "collections" ? styles.tabTextActive : styles.tabTextInactive}>
               COLLECTIONS
@@ -94,7 +96,8 @@ export default function ProfileScreen() {
         </Pressable>
 
         <Pressable style={styles.tabItem}>
-          <Flag color={activeTab === "tags" ? "#00ff9d" : "#666"} size={24} />
+          
+          <Target  color={activeTab === "tags" ? "#00ff9d" : "#666"} size={24} />
           <TouchableOpacity onPress={() => setActiveTab("tags")}>
             <Text style={activeTab === "tags" ? styles.tabTextActive : styles.tabTextInactive}>
               MANAGE TAGS
@@ -107,10 +110,10 @@ export default function ProfileScreen() {
       {activeTab === "collections" ? (
         <View style={styles.content}>
         <View style={styles.contentSection}>
-          <Card icon="heart" label="LIKED" image={liked} count="(32)"/>
-          <Card icon="bookmark" label="SAVED" image={saved} count="(23)"/>
+          <Card icon="heart" label=" LIKED (32)" image={liked}/>
+          <Card icon="bookmark" label=" SAVED (23)" image={saved} />
         </View>
-        <Card icon="file" label="FILES" image={files} count="(3)"/>
+        <Card icon="file" label=" FILES (3)" image={files} />
         </View>
        
         
@@ -119,7 +122,7 @@ export default function ProfileScreen() {
         <View style={styles.manageSection}>
           <Text style={styles.manageTagsText}>Our recommendations work best when you let us know these things:</Text>
           <TouchableOpacity style={styles.tagOption}>
-            <Text style={styles.tagTitle}>YOUR DIFFICULTY ✨</Text>
+            <Text style={styles.tagTitle}>YOUR DIFFICULTY ✨ </Text>
             <Text style={styles.tagDescription}>You decide the level of challenge you want!</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.tagOption}>
@@ -152,7 +155,7 @@ const styles = StyleSheet.create({
   bio: { color: "#cccaca", marginTop: 4, fontFamily: "CircularBook" },
   statsContainer: { marginTop: 20 },
   statItem: { alignItems: "flex-start" },
-  statNumber: { color: "#fff", fontSize: 18, fontWeight: "bold", fontFamily: "CircularBook" },
+  statNumber: { color: "#fff", fontSize: 18, fontWeight: "bold", fontFamily: "NTBrickSans" },
   statLabel: { color: "#cccaca", fontSize: 12, marginTop: 4, fontFamily: "CircularBook" },
   tabBar: { flexDirection: "row", borderBottomWidth: 1, borderBottomColor: "#333", paddingHorizontal: 20 },
   tabItem: { flexDirection: "row", alignItems: "center", paddingVertical: 16, marginRight: 32 },
@@ -178,4 +181,5 @@ const styles = StyleSheet.create({
     height: "110%", 
     resizeMode: "cover",
   },
+ 
 });

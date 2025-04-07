@@ -4,18 +4,16 @@ interface Props{
     label:String,
     image:any,
     icon:keyof typeof FontAwesome.glyphMap;
-    count:String
 }
 
-const Card = ({ label, image,icon,count }:Props) => {
+const Card = ({ label, image,icon }:Props) => {
     return (
     <View style={styles.card}>
          <Image source={image} style={styles.image} />
           <View style={styles.textContainer}>
           <FontAwesome  name={icon} size={24} color="#6e6e6a" />
          <Text style={styles.name}>{label}</Text> 
-         <Text style={styles.count}>{count}</Text> 
-         </View> 
+           </View> 
          </View>
          );
 };
@@ -37,18 +35,11 @@ const styles = StyleSheet.create({
     
 }, 
     name: {
-    fontSize: 15,
+    fontSize: 12,
     fontWeight: "thin", 
     color: "#c4c4be",
-    fontFamily:"CircularLight"
- },
-    count: {
-        color: "#c4c4be",
-        fontSize: 16,
-        fontWeight: "bold",
-        marginTop: 2,
-        fontFamily:"NTBrickSans"
-      },
+    fontFamily:"CooperHewittMedium",
+ }
 });
    
 export default Card;
