@@ -11,49 +11,59 @@ const tick=require("../assets/images/tick.png");
 const liked=require("../assets/images/liked.png");
 const saved= require("../assets/images/saved.png");
 const files= require("../assets/images/files.png");
-const BACKGROUND_IMAGE = require("../assets/images/background.jpg");
+const collection=require("../assets/images/icon=collections.png")
+const target=require("../assets/images/icon=target.png")
+const BACKGROUND_IMAGE_2 = require("../assets/images/Property 1=2.png"); // Property 1=2.png
 
 export default function ProfileScreen() {
   const [activeTab, setActiveTab] = useState("collections");
   const animatedValue = useRef(new Animated.Value(0)).current;
-
+  const imageTranslateX = animatedValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: [-70, 10], // Adjust for how far you want it to slide
+  });
 
   useEffect(() => {
     Animated.loop(
       Animated.sequence([
-        Animated.timing(animatedValue, { toValue: 1, duration: 1000, useNativeDriver: false }),
-        Animated.timing(animatedValue, { toValue: 0, duration: 1000, useNativeDriver: false })
+        Animated.timing(animatedValue, {
+          toValue: 1,
+          duration: 6000,
+          useNativeDriver: true, 
+        }),
+        Animated.timing(animatedValue, {
+          toValue: 0,
+          duration: 6000,
+          useNativeDriver: true,
+        }),
       ])
-    ).start()
-  }, []);
+    ).start();
+  }, []);
 
 
-
-  const imageOpacity = animatedValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0.7, 1] 
-  });
-  
-  const imageScale = animatedValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: [1, 1.05] 
-  });
-
+ 
    
 
   return (
     <ScrollView style={styles.container}>
     
       <Animated.View  style={styles.profileSection} >
-      <Animated.Image 
-        source={BACKGROUND_IMAGE} 
-        style={[styles.backgroundImage, { opacity: imageOpacity, transform: [{ scale: imageScale }] }]} 
-      />  
+      
+
+       <Animated.Image
+  source={BACKGROUND_IMAGE_2}
+  style={[
+    styles.backgroundImage,
+    { transform: [{ translateX: imageTranslateX }] }
+  ]}
+/>
+
+       
       {/* HEADER */}
       <View style={styles.header}>
         <View style={styles.headerActions}>
-            <Share2 size={24}  color="white"/>
-            <Settings size={24}  color="white"/>
+            <Share2 size={24}  color="#c2c4c3"/>
+            <Settings size={24}  color="#c2c4c3"/>
         </View>
       </View>
 
@@ -87,7 +97,8 @@ export default function ProfileScreen() {
       {/* TABS */}
       <View style={styles.tabBar}>
         <Pressable style={styles.tabItem}>
-        <Package2  color={activeTab === "collections" ? "#00ff9d" : "#666"} size={24}/>
+        <Image source={collection} tintColor={activeTab === "collections" ? "#00ff9d" : "#666"} 
+           />
           <TouchableOpacity onPress={() => setActiveTab("collections")}>
             <Text style={activeTab === "collections" ? styles.tabTextActive : styles.tabTextInactive}>
               COLLECTIONS
@@ -97,7 +108,8 @@ export default function ProfileScreen() {
 
         <Pressable style={styles.tabItem}>
           
-          <Target  color={activeTab === "tags" ? "#00ff9d" : "#666"} size={24} />
+        <Image source={target} tintColor={activeTab === "tags" ? "#00ff9d" : "#666"} 
+           />
           <TouchableOpacity onPress={() => setActiveTab("tags")}>
             <Text style={activeTab === "tags" ? styles.tabTextActive : styles.tabTextInactive}>
               MANAGE TAGS
@@ -158,8 +170,10 @@ const styles = StyleSheet.create({
   statNumber: { color: "#fff", fontSize: 18, fontWeight: "bold", fontFamily: "NTBrickSans" },
   statLabel: { color: "#cccaca", fontSize: 12, marginTop: 4, fontFamily: "CircularBook" },
   tabBar: { flexDirection: "row", borderBottomWidth: 1, borderBottomColor: "#333", paddingHorizontal: 20 },
-  tabItem: { flexDirection: "row", alignItems: "center", paddingVertical: 16, marginRight: 32 },
-  tabTextActive: { color: "#00ff9d", fontSize: 14, fontWeight: "600", marginLeft: 8, fontFamily: "CircularBook" },
+  tabItem: { flexDirection: "row", alignItems: "center", paddingVertical: 16, marginRight: 60 },
+  tabTextActive: { color: "#00ff9d", fontSize: 14, fontWeight: "600", marginLeft: 8, fontFamily: "CircularBook",
+    borderBottomWidth:2, borderBottomColor:"#00ff9d", paddingBottom:6,
+   },
   tabTextInactive: { color: "#666", fontSize: 14, fontWeight: "600", marginLeft: 8, fontFamily: "CircularBook" },
   content:{padding: 15, gap: 15},
   contentSection: { gap: 15, flex:1,flexDirection:"row" },
@@ -176,8 +190,11 @@ const styles = StyleSheet.create({
   tagTitle: { color: "#fff", fontSize: 14,fontFamily:"CircularBook" },
   tagDescription: { color: "#aaa", fontSize: 12, marginTop: 4 ,fontFamily:"CircularBook"},
   backgroundImage: { 
+    
     position: "absolute",
-    width: "200%",
+    top:0,left:0,
+    right:0,bottom:0,
+    width: "130%",
     height: "110%", 
     resizeMode: "cover",
   },
